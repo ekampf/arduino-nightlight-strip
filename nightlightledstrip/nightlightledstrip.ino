@@ -31,7 +31,6 @@ void setup() {
 void loop() {
   if (photocellReading > 500) {
     Serial.print("Analog reading = "); Serial.println(photocellReading);
-    Serial.println("lalala");
     blank(20);
   }
   else if (animation == 0) {
@@ -74,7 +73,6 @@ bool checkButton() {
 
   if (buttonState == HIGH) {
     // turn LED on:
-    Serial.print("Button pressed!");
     animation = (animation + 1) % 8;
     Serial.print("Animation is"); Serial.println(animation, DEC);
     return true;
@@ -84,6 +82,7 @@ bool checkButton() {
 bool checkPhotocell() {
   prevPhotocellReading = photocellReading;
   photocellReading = analogRead(photocellPin);
+  Serial.print("photocellReading is"); Serial.println(photocellReading, DEC);
 
   if (photocellReading >= 600) {
     return true;
